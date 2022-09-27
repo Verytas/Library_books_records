@@ -27,7 +27,7 @@ public class PersonValidator implements Validator {
 		Person person = (Person) target;
 
 		if (personDAO.show(person.getFullName(), person.getYearOfBirth()).isPresent()) {
-			errors.rejectValue("name", "", "This person already exists");
+			errors.rejectValue("fullName", "", "This person already exists");
 			errors.rejectValue("yearOfBirth", "", "This person already exists");
 		}
 	}
