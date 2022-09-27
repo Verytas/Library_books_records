@@ -1,4 +1,4 @@
-This is Spring MVC application that manages library (it's users and books).
+This is Spring MVC application that manages library (its users and books).
 
 Data is stored in database.
 SQL code for table creation is in file sql/project1_db.sql.
