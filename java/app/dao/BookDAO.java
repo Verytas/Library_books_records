@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Optional;
 @Component
@@ -26,6 +25,11 @@ public class BookDAO {
 	public Book show(int id) {
 		return jdbcTemplate.query("SELECT * FROM Book WHERE id=?", new BeanPropertyRowMapper<>(Book.class), id)
 				.stream().findAny().orElse(null);
+	}
+
+	public Optional<Book> checkPresence(String author, String title, int yearOfPublishing) {
+		return jdbcTemplate.query("SELECT * FROM Book WHERE author=? AND title=? AND year_of_publishing=?",
+				new BeanPropertyRowMapper<>(Book.class), author, title, yearOfPublishing).stream().findAny();
 	}
 
 	public void save(Book book) {
